@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+    <link rel="stylesheet" href="./public/css/app.css">
+</head>
+
+<body>
+
+    <div class="hero"></div>
+
+<div class="welcoming ">
+<h1 >hello flan you are now connected chose To Do list to start</h1>
+<a href="">To Do normal</a>
+<a href="">To Do medium</a>
+<a href="">To Do advanced</a>
+
+
+</div>
+
+
+    <!-- *Login Modal -->
+
+    <div class="modalo">
+
+        <button class="btn button-modal modal1 " id="modal1">Login</button>
+
+        <div class="contenu container1" id="modal1">
+
+            <button class="x-button">X</button>
+
+            <h2 class="lgn-txt">Login</h2>
+
+            <form action="">
+
+                <input type="email" name="" class="login-mail login-input" id="login-mail" placeholder="">
+                <label class="mail-label" for="">Email</label>
+
+                <input type="password" name="" class="login-password login-input" id="login-password" placeholder="">
+                <label class="password-label" for="">Password</label>
+
+
+            </form>
+            <button class="login-button">Login</button>
+            <button class="close-button">Close</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- * sing up  -->
+    <div class="moda2">
+
+        <button class="btn button-modal modal2 " id="modal2">Sing up</button>
+
+        <div class="contenu container2" id="modal2">
+
+            <button class="x-button">X</button>
+
+            <h2 class="joining">Join us</h2>
+            <form action="">
+
+                <input type="text" class="singup-input singup-user" id="username">
+                <label for="" class="singup-label user-label">username</label>
+
+                <input type="email" class="singup-input singup-mail" id="emailsingup">
+                <label for="" class="singup-label mail-s-label">Email</label>
+
+                <input type="password" class="singup-input singup-password" id="passwordsingup">
+                <label for="" class="singup-label password-s-label">Password</label>
+
+                <input type="password" class="singup-input singup-confirm" id="confirmsingup">
+                <label for="" class="singup-label confirm-s-label">Confirm password</label>
+
+
+            </form>
+            <button class="singup-button" id="collect-data">Sing up</button>
+            <button class="close-button">Close</button>
+
+        </div>
+
+    </div>
+
+    <button class="logoutbtn">Log out</button>
+
+
+
+    <script src="./public/js/app.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
