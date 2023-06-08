@@ -65,6 +65,8 @@ let checkinfo = true
 
 let isConnected = false
 let welcoming = document.querySelector(".welcome")
+let welcomingDiv = document.querySelector(".welcoming")
+
 
 //~log out 
 let logoutbtn = document.querySelector(".logoutbtn")
@@ -238,8 +240,9 @@ function connected(theUser) {
         modal2btn.style.display = "none"
         modal1cntn.style.display = "none"
         modal2cntn.style.display = "none"
-        welcoming.textContent = `Hello ${theUser.username} you are connected`
+        welcoming.textContent = `hello ${theUser.username} you are now connected chose To Do list to start`
         welcoming.style.display = "initial"
+        welcomingDiv.style.display = "initial"
         logoutbtn.style.display = "initial"
     } else {
         modal1btn.style.display = "initial"
@@ -247,6 +250,10 @@ function connected(theUser) {
         modal1cntn.style.display = "none"
         modal2cntn.style.display = "none"
         welcoming.style.display = "none"
+        welcomingDiv.style.display = "none"
         logoutbtn.style.display = "none"
     }
 }
+
+// ************************************************************************* creation des task *************************************************//
+
