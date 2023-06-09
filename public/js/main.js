@@ -130,7 +130,6 @@ advancedCreation.addEventListener("click", () => {
 
                         if (draggingTask) {
                             let taskContainer = draggingTask.parentElement;
-                            console.log(zone);
                             if (taskContainer !== zone) {
 
                                 zone.appendChild(draggingTask);
@@ -204,8 +203,9 @@ advancedCreation.addEventListener("click", () => {
                 deleteTask.setAttribute("class", "fa-solid fa-trash")
                 toolsDiv.appendChild(deleteTask)
                 deleteTask.addEventListener("click", () => {
-                    taskContainer.removeChild(taskDiv)
+                    let parent = taskDiv.parentElement
 
+                    parent.removeChild(taskDiv)
                 })
 
 
