@@ -11098,6 +11098,7 @@ main {
 .task-column {
   width: 20vw;
   height: 100%;
+  overflow-y: auto;
   border: 2px solid white;
   border-radius: 20px;
   position: absolute;
@@ -11241,6 +11242,7 @@ main {
 .tasks-container {
   width: 60vw;
   height: 70vh;
+  overflow-y: auto;
   border: 3px solid #ce5a16;
   position: fixed;
   top: 25vh;

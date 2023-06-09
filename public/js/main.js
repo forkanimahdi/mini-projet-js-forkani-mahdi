@@ -188,6 +188,8 @@ advancedCreation.addEventListener("click", () => {
                         taskDone.setAttribute("class", "fa-solid fa-circle-check task-done")
                         taskDiv.style.backgroundColor = ""
                         taskInput.style.textDecoration = ""
+                        taskInput.style.color = ""
+
 
                     }
                 })
