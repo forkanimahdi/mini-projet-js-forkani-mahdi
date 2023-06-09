@@ -14,7 +14,7 @@ advancedCreation.addEventListener("click", () => {
     //* create container
     let taskContainer = document.createElement("div")
     taskContainer.classList.add("task-column")
-    taskContainer.setAttribute("ondragover","event.preventDefault()")
+    taskContainer.setAttribute("ondragover", "event.preventDefault()")
     taskContainer.style.left = containerPosition + "vw"
     main.appendChild(taskContainer)
     containerPosition += 21
@@ -108,6 +108,37 @@ advancedCreation.addEventListener("click", () => {
                 let taskDiv = document.createElement("div")
                 taskDiv.classList.add("task-div")
                 taskDiv.setAttribute("draggable", "true")
+                // !00000000000000000000
+                taskDiv.addEventListener("dragstart", (e) => {
+                    e.target.classList.add("is-dragging")
+                })
+                taskDiv.addEventListener("dragend", (e) => {
+                    e.target.classList.remove("is-dragging");
+                });
+                let droppables = bodyAdvanced.querySelectorAll(".task-column")
+                droppables.forEach((zone) => {
+                    zone.addEventListener("dragover", (e) => {
+                        e.preventDefault();
+
+                        let draggingTask = document.querySelector(".is-dragging");
+
+                        if (draggingTask) {
+                            let taskContainer = draggingTask.parentElement;
+                            console.log(zone);
+                            if (taskContainer !== zone) {
+
+                                zone.appendChild(draggingTask);
+                                //         //     }else{
+                                //         //         console.log('xxx');
+                            }
+                        }
+                    });
+                });
+
+
+
+
+
                 taskContainer.appendChild(taskDiv)
                 //* creation de task area
                 let taskInput = document.createElement('input')
@@ -181,54 +212,8 @@ advancedCreation.addEventListener("click", () => {
                     insertTask.style.color = ""
                 }, 1500);
             }
-            let taskDivs = bodyAdvanced.querySelectorAll('.task-div')
-
-
         }
-
     })
-
-
-
-    let taskColumns = bodyAdvanced.querySelectorAll('.task-column')
-    let draggables = document.querySelectorAll(".task-div");
-    let droppables = document.querySelectorAll(".task-column");
-
-    draggables.forEach((task) => {
-        task.addEventListener("dragstart", (e) => {
-            e.dataTransfer.setData("text/plain", e.target.id);
-            e.target.classList.add("is-dragging");
-        });
-
-        task.addEventListener("dragend", (e) => {
-            e.target.classList.remove("is-dragging");
-        });
-    });
-
-    droppables.forEach((zone) => {
-        zone.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            
-            let draggingTask = document.querySelector(".is-dragging");
-            
-            if (draggingTask) {
-                const taskContainer = draggingTask.parentElement;
-                
-                if (taskContainer !== zone) {
-                    console.log(zone);
-
-                    zone.appendChild(draggingTask);
-            //     }else{
-            //         console.log('xxx');
-                }
-            }
-        });
-    });
-
-
-
-
-
 })
 
 
