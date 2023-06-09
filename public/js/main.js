@@ -1,4 +1,4 @@
-let bodyAdvanced = document.querySelector(".task-column")
+let bodyAdvanced = document.querySelector(".advanced-body")
 let main = document.querySelector("main")
 let advancedCreation = document.querySelector(".button-creation")
 let containerHeader = document.querySelector(".task-column")
@@ -14,6 +14,7 @@ advancedCreation.addEventListener("click", () => {
     //* create container
     let taskContainer = document.createElement("div")
     taskContainer.classList.add("task-column")
+    taskContainer.setAttribute("ondragover","event.preventDefault()")
     taskContainer.style.left = containerPosition + "vw"
     main.appendChild(taskContainer)
     containerPosition += 21
@@ -63,13 +64,12 @@ advancedCreation.addEventListener("click", () => {
     //* creation de taches
 
     addTask.addEventListener('click', () => {
-
         //*creation de task de l input
         if (addTask.classList.contains("type-task")) {
             let insertTask = document.createElement("input")
             insertTask.classList.add("header-task-area")
             insertTask.setAttribute("type", "text")
-            insertTask.setAttribute("maxlength", "40")
+            insertTask.setAttribute("maxlength", "15")
             insertTask.setAttribute("placeholder", "Insert task here or press esc to cancel")
             addTask.removeAttribute("class")
             addTask.setAttribute("class", "fa-solid fa-check create-task")
@@ -97,7 +97,6 @@ advancedCreation.addEventListener("click", () => {
             let insertTask = containerHeader.querySelector(".header-task-area")
             //* if the input is filed
             if (insertTask.value != 0) {
-
                 addTask.removeAttribute("class")
                 addTask.setAttribute("class", "fa-sharp fa-solid fa-plus ms-3 type-task")
                 // insertTask.style.display = 'none'
@@ -105,14 +104,15 @@ advancedCreation.addEventListener("click", () => {
                 editTitle.style.display = 'initial'
                 changecolor.style.display = 'initial'
                 headerTitle.style.display = 'initial'
-
                 //*creation de task div
                 let taskDiv = document.createElement("div")
                 taskDiv.classList.add("task-div")
+                taskDiv.setAttribute("draggable", "true")
                 taskContainer.appendChild(taskDiv)
                 //* creation de task area
-                let taskInput = document.createElement('textarea')
+                let taskInput = document.createElement('input')
                 taskInput.classList.add("task-area")
+                taskInput.setAttribute('maxlength', "15")
                 taskInput.readOnly = true
                 taskInput.value = insertTask.value
                 taskDiv.appendChild(taskInput)
@@ -163,7 +163,7 @@ advancedCreation.addEventListener("click", () => {
                 let deleteTask = document.createElement("i")
                 deleteTask.setAttribute("class", "fa-solid fa-trash")
                 toolsDiv.appendChild(deleteTask)
-                deleteTask.addEventListener("click",() =>{
+                deleteTask.addEventListener("click", () => {
                     taskContainer.removeChild(taskDiv)
 
                 })
@@ -181,10 +181,55 @@ advancedCreation.addEventListener("click", () => {
                     insertTask.style.color = ""
                 }, 1500);
             }
+            let taskDivs = bodyAdvanced.querySelectorAll('.task-div')
+
+
         }
 
     })
 
 
+
+    let taskColumns = bodyAdvanced.querySelectorAll('.task-column')
+    let draggables = document.querySelectorAll(".task-div");
+    let droppables = document.querySelectorAll(".task-column");
+
+    draggables.forEach((task) => {
+        task.addEventListener("dragstart", (e) => {
+            e.dataTransfer.setData("text/plain", e.target.id);
+            e.target.classList.add("is-dragging");
+        });
+
+        task.addEventListener("dragend", (e) => {
+            e.target.classList.remove("is-dragging");
+        });
+    });
+
+    droppables.forEach((zone) => {
+        zone.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            
+            let draggingTask = document.querySelector(".is-dragging");
+            
+            if (draggingTask) {
+                const taskContainer = draggingTask.parentElement;
+                
+                if (taskContainer !== zone) {
+                    console.log(zone);
+
+                    zone.appendChild(draggingTask);
+            //     }else{
+            //         console.log('xxx');
+                }
+            }
+        });
+    });
+
+
+
+
+
 })
+
+
 

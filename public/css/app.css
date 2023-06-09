@@ -11137,6 +11137,7 @@ main {
   border: none;
   color: #d1a7ff;
   outline: none;
+  user-select: none;
   background-color: transparent;
 }
 
@@ -11196,6 +11197,14 @@ main {
 }
 .tools-div i:hover {
   color: purple;
+}
+
+.is-dragging {
+  scale: 1.05;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  background: #2d0869;
+  color: white;
+  cursor: move;
 }
 
 /*# sourceMappingURL=app.css.map */
