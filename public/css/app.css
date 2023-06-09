@@ -11060,7 +11060,6 @@ h2, .h2 {
   background-color: #432776;
   position: relative;
   height: 100vh;
-  overflow-y: hidden;
 }
 
 .div-add-column {
@@ -11110,6 +11109,7 @@ main {
   width: 100%;
   height: 10%;
   border-bottom: 1px solid white;
+  position: relative;
 }
 .div-add-tasks i {
   cursor: pointer;
@@ -11118,6 +11118,13 @@ main {
 }
 .div-add-tasks i:hover {
   color: white;
+}
+
+.create-task {
+  position: absolute;
+  right: 3%;
+  top: 50%;
+  transform: translate(-95%, -50%);
 }
 
 .header-input {
@@ -11134,7 +11141,25 @@ main {
 }
 
 .header-input:focus {
-  outline: none4;
+  outline: none;
+}
+
+.header-task-area {
+  width: 80%;
+  height: 100%;
+  font-weight: 600;
+  font-size: 1.1vw;
+  text-align: center;
+  cursor: default;
+  border: none;
+  border-radius: 20px 0 0 0;
+  color: #fff;
+  outline: 2px solid white;
+  background-color: transparent;
+}
+.header-task-area::placeholder {
+  color: rgba(255, 255, 255, 0.7137254902);
+  font-size: 0.8vw;
 }
 
 .task-div {
@@ -11142,6 +11167,35 @@ main {
   height: 15vh;
   border-bottom: 1px solid white;
   background-color: rgba(255, 255, 255, 0.1764705882);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 4px;
+}
+
+.task-area {
+  width: 85%;
+  height: 60%;
+  background-color: transparent;
+  overflow-y: hidden;
+  font-size: 1.3vw;
+  cursor: default;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+.tools-div {
+  width: 15%;
+  height: 100%;
+  border-left: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.tools-div i:hover {
+  color: purple;
 }
 
 /*# sourceMappingURL=app.css.map */
