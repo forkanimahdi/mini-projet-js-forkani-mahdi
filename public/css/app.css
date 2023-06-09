@@ -11280,7 +11280,7 @@ main {
 }
 
 .is-dragging {
-  background: #2d0869;
+  background: transparent;
   color: white;
   cursor: move;
 }

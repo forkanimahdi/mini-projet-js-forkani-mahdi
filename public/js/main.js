@@ -42,6 +42,11 @@ advancedCreation.addEventListener("click", () => {
     let changecolor = document.createElement("i")
     changecolor.setAttribute("class", "fa-sharp fa-solid fa-palette ms-3")
     containerHeader.appendChild(changecolor)
+    changecolor.addEventListener('click',()=>{
+        let colorTable = ['#964d4d','#f9e798','#ee5151','transparent','#6fa8dc','#d09840','#6c7e42']
+        let randomColor = colorTable[Math.round(Math.random()* (colorTable.length - 1))]
+        taskContainer.style.backgroundColor = randomColor
+    })
 
     //* modification de titre
 
