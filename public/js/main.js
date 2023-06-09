@@ -108,7 +108,7 @@ advancedCreation.addEventListener("click", () => {
                 let taskDiv = document.createElement("div")
                 taskDiv.classList.add("task-div")
                 taskDiv.setAttribute("draggable", "true")
-                // !00000000000000000000
+                // ! Draaaaaaaaaaaaaaaaaaaaag aaaaaaaaaaaaaaaaaaaand DDDDDDDDDDDroooooooooooooopp
                 taskDiv.addEventListener("dragstart", (e) => {
                     e.target.classList.add("is-dragging")
                 })
@@ -181,6 +181,7 @@ advancedCreation.addEventListener("click", () => {
                         taskDone.setAttribute("class", "fa-sharp fa-solid fa-rotate-left")
                         taskDiv.style.backgroundColor = "green"
                         taskInput.style.textDecoration = "line-through"
+                        taskInput.style.color = "white"
 
                     } else {
                         taskDone.removeAttribute("class")
