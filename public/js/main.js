@@ -93,7 +93,95 @@ advancedCreation.addEventListener("click", () => {
             })
 
             //* creation de task
-        } 
+        } else {
+            let insertTask = containerHeader.querySelector(".header-task-area")
+            //* if the input is filed
+            if (insertTask.value != 0) {
+
+                addTask.removeAttribute("class")
+                addTask.setAttribute("class", "fa-sharp fa-solid fa-plus ms-3 type-task")
+                // insertTask.style.display = 'none'
+                addTask.style.transition = "0s ease"
+                editTitle.style.display = 'initial'
+                changecolor.style.display = 'initial'
+                headerTitle.style.display = 'initial'
+
+                //*creation de task div
+                let taskDiv = document.createElement("div")
+                taskDiv.classList.add("task-div")
+                taskContainer.appendChild(taskDiv)
+                //* creation de task area
+                let taskInput = document.createElement('textarea')
+                taskInput.classList.add("task-area")
+                taskInput.readOnly = true
+                taskInput.value = insertTask.value
+                taskDiv.appendChild(taskInput)
+                //* icon div de task
+                let toolsDiv = document.createElement("div")
+                toolsDiv.classList.add("tools-div")
+                taskDiv.appendChild(toolsDiv)
+                //* edit the task
+                let editTask = document.createElement("i")
+                editTask.setAttribute("class", "fa-solid fa-pen edit-task")
+                toolsDiv.appendChild(editTask)
+                editTask.addEventListener("click", () => {
+                    if (editTask.classList.contains("edit-task")) {
+                        editTask.removeAttribute("class")
+                        editTask.setAttribute("class", "fa-solid fa-check")
+                        taskInput.readOnly = false
+                        taskInput.focus()
+                    } else {
+                        editTask.removeAttribute("class")
+                        editTask.setAttribute("class", "fa-solid fa-pen edit-task")
+                        taskInput.readOnly = true
+
+
+                    }
+
+                })
+                //* task is completed
+                let taskDone = document.createElement("i")
+                taskDone.setAttribute("class", "fa-solid fa-circle-check task-done")
+                toolsDiv.appendChild(taskDone)
+                taskDone.addEventListener('click', () => {
+
+                    if (taskDone.classList.contains("task-done")) {
+                        taskDone.removeAttribute("class")
+                        taskDone.setAttribute("class", "fa-sharp fa-solid fa-rotate-left")
+                        taskDiv.style.backgroundColor = "green"
+                        taskInput.style.textDecoration = "line-through"
+
+                    } else {
+                        taskDone.removeAttribute("class")
+                        taskDone.setAttribute("class", "fa-solid fa-circle-check task-done")
+                        taskDiv.style.backgroundColor = ""
+                        taskInput.style.textDecoration = ""
+
+                    }
+                })
+                //* delete task
+                let deleteTask = document.createElement("i")
+                deleteTask.setAttribute("class", "fa-solid fa-trash")
+                toolsDiv.appendChild(deleteTask)
+                deleteTask.addEventListener("click",() =>{
+                    taskContainer.removeChild(taskDiv)
+
+                })
+
+
+                containerHeader.removeChild(insertTask)
+
+                //*if the input is empty
+            } else {
+                insertTask.value = 'This area cant be empty'
+                insertTask.style.color = "orangered"
+                insertTask.style.fontSize = '1.1vw'
+                setTimeout(() => {
+                    insertTask.value = ''
+                    insertTask.style.color = ""
+                }, 1500);
+            }
+        }
 
     })
 
