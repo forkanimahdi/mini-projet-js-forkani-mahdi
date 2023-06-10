@@ -10,24 +10,63 @@
 </head>
 
 <body class="simpleBody">
+    <h5 class="welcoming-simple"></h5>
 
     <input class="insert-input-simple rounded-pill" maxlength="50" type="text" placeholder="Insert Task">
     <button class="insert-button-simple rounded-pill">Add task</button>
 
-    <div class="tasks-container">
-        <!-- <div class="tach">
-            <input type="text" class="the-task" readonly>
-            <div class="tools">
-                <i class="fa-solid fa-pen pointer edit-task"></i>
-                <i class="fa-solid fa-check"></i>
-                <i class="fa-solid fa-trash"></i>
+    <!-- ! panel tool -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary rounded-5 setting-button" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">
+        <i class="fa-solid fa-gear"></i>
+        Setting
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content setting-div">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 setting-tittre" id="staticBackdropLabel">Setting Pannel</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="pickcolor d-flex align-items-center justify-content-between">
+                        <p>Change gradiant Background</p>
+                        <div class="colors">
+                            <input type="color" name="" id="gradiant1">
+                            <input type="color" name="" id="gradiant2">
+                        </div>
+                    </div>
+                    <div class="mainpage d-flex align-items-center justify-content-between mt-3">
+                        <p>Back to Menu</p>
+                        <a class="btn btn-dark text-white text-decoration-none" href="../../index.html">To Do
+                            Lists</a>
+                    </div>
+                    <div class="mainpage d-flex align-items-center justify-content-between mt-3">
+                        <p>Delete all the tasks</p>
+                        <button class="btn btn-dark text-white" id="resetTask">Reset all</button>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer d-flex align-items-center justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="savechange">Save chaange</button>
+                </div>
             </div>
-        </div> -->
+        </div>
+    </div>
+
+
+    <div class="tasks-container">
 
     </div>
 
     <script src="../js/script.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
 </body>
 

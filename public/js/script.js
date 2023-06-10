@@ -1,11 +1,21 @@
 
+
 let inputTask = document.querySelector(".insert-input-simple")
 let inputBtn = document.querySelector(".insert-button-simple")
 let parentDiv = document.querySelector(".tasks-container")
+let welcomingSimple = document.querySelector(".welcoming-simple");
+let currentUserConnected = localStorage.getItem("Current User")
+let bodysimple = document.body
+let savechange = document.querySelector("#savechange")
+let gradiant1 = document.querySelector("#gradiant1")
+let gradiant2 = document.querySelector("#gradiant2")
+let resetTask = document.querySelector("#resetTask")
+let simplebodyGradiant = localStorage.getItem("simplebodyGradiant")
+bodysimple.style.backgroundImage = simplebodyGradiant
 
+welcomingSimple.textContent = `Welcome ${currentUserConnected.charAt(0).toUpperCase() + currentUserConnected.slice(1)} you are now using the simple TO DO list`
 
-inputBtn.addEventListener("click", () => {
-
+function createTask() {
     if (inputTask.value != "") {
         //* creation de tach
         let tachContainer = document.createElement("div")
@@ -79,10 +89,12 @@ inputBtn.addEventListener("click", () => {
 
         })
     } else {
-        inputTask.value = 'This area cant be empty'
+        inputTask.setAttribute('placeholder', 'This area cant be empty')
         inputTask.style.color = "orangered"
         inputTask.style.fontSize = '1.1vw'
         setTimeout(() => {
+            inputTask.removeAttribute('placeholder', 'This area cant be empty')
+            inputTask.setAttribute('placeholder', 'Insert Task Here')
             inputTask.value = ''
             inputTask.style.color = ""
         }, 1500);
@@ -90,5 +102,26 @@ inputBtn.addEventListener("click", () => {
 
     }
 
+}
+
+inputBtn.addEventListener("click", () => {
+    createTask()
+})
+
+inputTask.addEventListener("keydown", (e) => {
+    if (e.keyCode == 13) {
+        createTask()
+    }
+})
+
+
+//~~ adddddddddddddddddddddddddddddddddddittional style
+
+
+savechange.addEventListener("click", () => {
+    console.log(gradiant1.value);
+    let simplebodyGradiant = `linear-gradient(90deg, ${gradiant1.value}, ${gradiant2.value})`
+    bodysimple.style.backgroundImage = simplebodyGradiant
+    localStorage.setItem("simplebodyGradiant", simplebodyGradiant)
 
 })

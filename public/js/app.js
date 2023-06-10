@@ -1,3 +1,8 @@
+let isConnectedString = localStorage.getItem('isConnected');
+let isConnected = Boolean(isConnectedString);
+let onlineUserString = localStorage.getItem('onlineUser');
+
+
 //*  modal
 let button = document.querySelectorAll('.button-modal ')
 let contenu = document.querySelectorAll(`.contenu`)
@@ -28,9 +33,11 @@ for (let index = 0; index < button.length; index++) {
         });
     })
 }
+
 //* systheme d authentification
 
 //~ sing up
+
 let singupInputs = document.querySelectorAll(".singup-input")
 let singupButton = document.getElementById('collect-data')
 
@@ -40,13 +47,13 @@ let passwordsingup = document.querySelector("#passwordsingup");
 let confirmPasssingup = document.querySelector("#confirmsingup");
 let joining = document.querySelector(".joining")
 
-// condition to collect data
+//? condition to collect data
 
 let emptyphase = true
 let matchedpass = true
 
-
 //~ login
+
 let loginButton = document.querySelector(".login-button")
 let loginInput = document.querySelectorAll(".login-input")
 
@@ -56,19 +63,18 @@ let loginLabel = document.querySelector(`.mail-label`);
 let passwordLabel = document.querySelector(`.password-label`);
 let logintext = document.querySelector(`.lgn-txt`);
 
-// check data 
+//? check data 
 
 let checkinfo = true
 
+//? check connections
 
-// check connections
-
-let isConnected = false
+// let isConnected = false
 let welcoming = document.querySelector(".welcome")
 let welcomingDiv = document.querySelector(".welcoming")
 
-
 //~log out 
+
 let logoutbtn = document.querySelector(".logoutbtn")
 
 
@@ -147,7 +153,7 @@ class Users {
 }
 
 let allUser = [];
-let testy = new Users("d", "d", "d")
+let testy = new Users("mehdi", "d", "d")
 allUser.push(testy)
 
 console.log(allUser);
@@ -202,7 +208,9 @@ function loginnow() {
                 isConnected = true
                 loginPassword.value = "";
                 loginMail.value = ""
+                localStorage.setItem('isConnected', isConnected.toString());
                 connected(element)
+                console.log(element);
 
             } else {
                 logintext.textContent = "password incorect"
@@ -230,10 +238,12 @@ logoutbtn.addEventListener("click", () => {
     let confirminglogout = confirm("Are you sure you want to log out")
     if (confirminglogout == true) {
         isConnected = false
+        localStorage.setItem('isConnected', isConnected.toString());
         connected()
     }
 })
 
+let onlineUser = []
 function connected(theUser) {
     if (isConnected == true) {
         modal1btn.style.display = "none"
@@ -244,6 +254,12 @@ function connected(theUser) {
         welcoming.style.display = "initial"
         welcomingDiv.style.display = "initial"
         logoutbtn.style.display = "initial"
+        let currentUserConnected = `${theUser.username}`
+        localStorage.setItem('Current User', currentUserConnected);
+        onlineUser.push(theUser)
+        let onlineUserString = JSON.stringify(onlineUser);
+        localStorage.setItem('onlineUser', onlineUserString);
+
     } else {
         modal1btn.style.display = "initial"
         modal2btn.style.display = "initial"
@@ -252,8 +268,18 @@ function connected(theUser) {
         welcoming.style.display = "none"
         welcomingDiv.style.display = "none"
         logoutbtn.style.display = "none"
+        localStorage.removeItem('Current User')
+        onlineUser.splice(0, onlineUser.length)
+        localStorage.removeItem('onlineUser');
     }
 }
 
-// ************************************************************************* creation des task *************************************************//
+
+if (isConnected == true) {
+    let onlineUser = JSON.parse(onlineUserString);
+    let currentUser = onlineUser[0]
+    console.log(currentUser);
+    connected(currentUser)
+}
+
 
