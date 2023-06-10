@@ -88,6 +88,7 @@ function createTask() {
             parentDiv.removeChild(tachContainer)
 
         })
+
     } else {
         inputTask.setAttribute('placeholder', 'This area cant be empty')
         inputTask.style.color = "orangered"
@@ -117,11 +118,23 @@ inputTask.addEventListener("keydown", (e) => {
 
 //~~ adddddddddddddddddddddddddddddddddddittional style
 
-
+//* changing color
 savechange.addEventListener("click", () => {
     console.log(gradiant1.value);
     let simplebodyGradiant = `linear-gradient(90deg, ${gradiant1.value}, ${gradiant2.value})`
     bodysimple.style.backgroundImage = simplebodyGradiant
     localStorage.setItem("simplebodyGradiant", simplebodyGradiant)
+
+})
+//* reset tasks
+resetTask.addEventListener("click", () => {
+    let confirming = confirm("Are you sure you want to reset tasks ? All data will be lost")
+    if (confirming) {
+        let allChildren = parentDiv.querySelectorAll('.tach')
+        allChildren.forEach(element => {
+            element.remove()
+        });
+    
+    }
 
 })
