@@ -12,8 +12,65 @@ let gradiant2 = document.querySelector("#gradiant2")
 let resetTask = document.querySelector("#resetTask")
 let simplebodyGradiant = localStorage.getItem("simplebodyGradiant")
 bodysimple.style.backgroundImage = simplebodyGradiant
-
 welcomingSimple.textContent = `Welcome ${currentUserConnected.charAt(0).toUpperCase() + currentUserConnected.slice(1)} you are now using the simple TO DO list`
+let previousTach = localStorage.getItem("tachContainer");
+parentDiv.innerHTML = previousTach
+let editingButton = parentDiv.querySelectorAll(".edit-task")
+let completedButton = parentDiv.querySelectorAll(".task-done")
+let deleteButton = parentDiv.querySelectorAll(".delete-task")
+
+
+editingButton.forEach(element => {
+    let readinput = element.parentElement.parentElement.firstElementChild
+    element.addEventListener("click", () => {
+        if (element.classList.contains("edit-task")) {
+            element.removeAttribute("class")
+            element.setAttribute("class", "fa-solid fa-check")
+            readinput.readOnly = false
+            readinput.focus()
+        } else {
+            element.removeAttribute("class")
+            element.setAttribute("class", "fa-solid fa-pen edit-task")
+            readinput.readOnly = true
+        }
+    });
+});
+
+completedButton.forEach(element => {
+    let readinput = element.parentElement.previousElementSibling
+    let tachContainer = element.parentElement.parentElement
+
+    element.addEventListener('click', () => {
+
+        if (element.classList.contains("task-done")) {
+            element.removeAttribute("class")
+            element.setAttribute("class", "fa-sharp fa-solid fa-rotate-left")
+            tachContainer.style.backgroundColor = "green"
+            readinput.style.textDecoration = "line-through"
+            readinput.style.color = "#ce5a16"
+
+        } else {
+            element.removeAttribute("class")
+            element.setAttribute("class", "fa-solid fa-circle-check task-done")
+            tachContainer.style.backgroundColor = ""
+            readinput.style.textDecoration = ""
+            readinput.style.color = ""
+
+
+        }
+    })
+});
+
+deleteButton.forEach(element => {
+    let tachContainer = element.parentElement.parentElement
+
+    element.addEventListener("click", () => {
+        parentDiv.removeChild(tachContainer)
+        localStorage.setItem("tachContainer", parentDiv.innerHTML);
+
+
+    })
+});
 
 function createTask() {
     if (inputTask.value != "") {
@@ -25,10 +82,10 @@ function createTask() {
         let readinput = document.createElement("input")
         readinput.classList.add("the-task")
         readinput.setAttribute("type", "text")
+        readinput.setAttribute("value", inputTask.value)
         readinput.setAttribute("maxlength", "50")
         readinput.readOnly = true
         tachContainer.appendChild(readinput)
-        readinput.value = inputTask.value
         inputTask.value = ""
 
         //* creation de tools
@@ -82,12 +139,15 @@ function createTask() {
         })
         //* delete task
         let deleteTask = document.createElement("i")
-        deleteTask.setAttribute("class", "fa-solid fa-trash")
+        deleteTask.setAttribute("class", "fa-solid fa-trash delete-task")
         toolsDiv.appendChild(deleteTask)
         deleteTask.addEventListener("click", () => {
             parentDiv.removeChild(tachContainer)
+            localStorage.setItem("tachContainer", parentDiv.innerHTML);
+
 
         })
+        localStorage.setItem("tachContainer", parentDiv.innerHTML);
 
     } else {
         inputTask.setAttribute('placeholder', 'This area cant be empty')
@@ -120,7 +180,6 @@ inputTask.addEventListener("keydown", (e) => {
 
 //* changing color
 savechange.addEventListener("click", () => {
-    console.log(gradiant1.value);
     let simplebodyGradiant = `linear-gradient(90deg, ${gradiant1.value}, ${gradiant2.value})`
     bodysimple.style.backgroundImage = simplebodyGradiant
     localStorage.setItem("simplebodyGradiant", simplebodyGradiant)
@@ -131,10 +190,9 @@ resetTask.addEventListener("click", () => {
     let confirming = confirm("Are you sure you want to reset tasks ? All data will be lost")
     if (confirming) {
         let allChildren = parentDiv.querySelectorAll('.tach')
+        localStorage.removeItem("tachContainer");
         allChildren.forEach(element => {
             element.remove()
         });
-    
     }
-
 })
