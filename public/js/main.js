@@ -2,8 +2,14 @@ let bodyAdvanced = document.querySelector(".advanced-body")
 let main = document.querySelector("main")
 let advancedCreation = document.querySelector(".button-creation")
 let containerHeader = document.querySelector(".task-column")
-// let allInsertTask = document.querySelectorAll(".header-task-area")
-
+let welcominText = document.querySelector(".welcoming-advanced")
+let currentUserConnected = localStorage.getItem("Current User")
+let savechange = document.querySelector("#savechange")
+let gradiant1 = document.querySelector("#adv-gradiant1")
+let gradiant2 = document.querySelector("#adv-gradiant2")
+let resetTask = document.querySelector("#resetTask")
+let advancedbodygradiant = localStorage.getItem("advancedbodygradiant")
+bodyAdvanced.style.backgroundImage = advancedbodygradiant
 
 
 let containerPosition = 1;
@@ -33,20 +39,92 @@ advancedCreation.addEventListener("click", () => {
     //* edit icon
     let editTitle = document.createElement("i")
     editTitle.setAttribute("class", "fa-solid fa-pen edit-tittle")
+    editTitle.setAttribute("title","Edit the task column's name")
     containerHeader.appendChild(editTitle)
     //* add task
     let addTask = document.createElement("i")
     addTask.setAttribute("class", "fa-sharp fa-solid fa-plus ms-3 type-task")
+    addTask.setAttribute("title","Insert task")
     containerHeader.appendChild(addTask)
-    //* color palette
-    let changecolor = document.createElement("i")
-    changecolor.setAttribute("class", "fa-sharp fa-solid fa-palette ms-3")
-    containerHeader.appendChild(changecolor)
-    //~ generating random background color
-    changecolor.addEventListener('click',()=>{
-        let colorTable = ['#964d4d','#f9e798','#ee5151','transparent','#6fa8dc','#d09840','#6c7e42']
-        let randomColor = colorTable[Math.round(Math.random()* (colorTable.length - 1))]
-        taskContainer.style.backgroundColor = randomColor
+    //* column setting
+    let settingColumn = document.createElement("i")
+    settingColumn.setAttribute("class", "fa-solid fa-gear setting ms-3")
+    settingColumn.setAttribute("title","Setting")
+    containerHeader.appendChild(settingColumn)
+    settingColumn.addEventListener('click', () => {
+        if (settingColumn.classList.contains("setting")) {
+            settingColumn.removeAttribute("class")
+            settingColumn.setAttribute("class", "fa-solid fa-left-long leave")
+            editTitle.style.display = 'none'
+            addTask.style.display = 'none'
+            headerTitle.style.display = 'none'
+            containerHeader.style.display = "flex"
+            containerHeader.style.alignItems = "center"
+            containerHeader.style.justifyContent = "space-around"
+            //* changing color of column
+            let changeColor = document.createElement("i")
+            changeColor.setAttribute("title","Change  Column's Color")
+            changeColor.setAttribute("class", "fa-solid fa-palette")
+            changeColor.style.position = "relative"
+            let colorPalette = document.createElement("input")
+            colorPalette.setAttribute('type',"color")
+            colorPalette.style.position = "absolute"
+            colorPalette.style.left = "0"
+            colorPalette.style.left = "0"
+            colorPalette.style.width = "100%"
+            colorPalette.style.height = "100%"
+            colorPalette.style.opacity = "0%"
+            changeColor.appendChild(colorPalette)
+            containerHeader.appendChild(changeColor)
+            colorPalette.addEventListener("input", () => {
+                taskContainer.style.backgroundColor = colorPalette.value
+                taskContainer.setAttribute("data-background", colorPalette.value)
+
+            })
+            //* delete column 
+            let deleteColumn = document.createElement("i")
+            deleteColumn.setAttribute("class", "fa-solid fa-trash delete")
+            containerHeader.appendChild(deleteColumn)
+            deleteColumn.addEventListener("click", () => {
+                let deletedTaskPosition = taskContainer.style.left
+                let allContainers = main.querySelectorAll(".task-column")
+                allContainers.forEach(element => {
+                    let currentElementposition= element.style.left
+                    currentElementposition = currentElementposition.slice(0,-2)
+
+                    if (currentElementposition> deletedTaskPosition) {
+                        element.style.left = (currentElementposition -21) +"vw"
+                        containerPosition -= 21
+                    }
+                });
+                taskContainer.remove()
+            })
+            //* clear chi7aja 
+            let clearing = document.createElement("i")
+            clearing.setAttribute("title","Clear")
+            // clearing.setAttribute("class", "fa-solid fa-palette")          
+
+
+        } else {
+            let changeColor = containerHeader.querySelector(".fa-palette")
+            let deleteColumn = containerHeader.querySelector(".fa-trash")
+
+            settingColumn.removeAttribute("class")
+            settingColumn.setAttribute("class", "fa-solid fa-gear ms-3 setting")
+            editTitle.style.display = 'initial'
+            addTask.style.display = 'initial'
+            headerTitle.style.display = 'initial'
+            containerHeader.style.display = "block"
+            containerHeader.style.alignItems = ""
+            containerHeader.style.justifyContent = ""
+            containerHeader.removeChild(changeColor)
+            containerHeader.removeChild(deleteColumn)
+
+
+
+        }
+
+
     })
 
     //* modification de titre
@@ -81,7 +159,7 @@ advancedCreation.addEventListener("click", () => {
             addTask.setAttribute("class", "fa-solid fa-check create-task")
             addTask.style.transition = "0.5s "
             editTitle.style.display = 'none'
-            changecolor.style.display = 'none'
+            settingColumn.style.display = 'none'
             headerTitle.style.display = 'none'
             containerHeader.appendChild(insertTask)
             insertTask.focus()
@@ -93,7 +171,7 @@ advancedCreation.addEventListener("click", () => {
                     addTask.setAttribute("class", "fa-sharp fa-solid fa-plus ms-3 type-task")
                     addTask.style.transition = "0s ease"
                     editTitle.style.display = 'initial'
-                    changecolor.style.display = 'initial'
+                    settingColumn.style.display = 'initial'
                     headerTitle.style.display = 'initial'
                 }
             })
@@ -108,7 +186,7 @@ advancedCreation.addEventListener("click", () => {
                 // insertTask.style.display = 'none'
                 addTask.style.transition = "0s ease"
                 editTitle.style.display = 'initial'
-                changecolor.style.display = 'initial'
+                settingColumn.style.display = 'initial'
                 headerTitle.style.display = 'initial'
                 //*creation de task div
                 let taskDiv = document.createElement("div")
@@ -226,4 +304,10 @@ advancedCreation.addEventListener("click", () => {
 })
 
 
+//* changing color
+savechange.addEventListener("click", () => {
+    let advancedbodygradiant = `linear-gradient(180deg, ${gradiant1.value}, ${gradiant2.value})`
+    bodyAdvanced.style.backgroundImage = advancedbodygradiant
+    localStorage.setItem("advancedbodygradiant", advancedbodygradiant)
 
+})
