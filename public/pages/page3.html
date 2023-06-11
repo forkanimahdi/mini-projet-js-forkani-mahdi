@@ -22,59 +22,53 @@
         </button>
 
         <!-- *addtask -->
-        <button class="ad-add-column rounded-pill button-creation d-flex align-items-center justify-content-evenly"><i
-                class="fa-solid fa-plus" title="Add a column to insert all your task"></i>Add column</button>
+        <button title="Add a column to insert all your task"
+            class="ad-add-column rounded-pill button-creation d-flex align-items-center justify-content-evenly"><i
+                class="fa-solid fa-plus"></i>Add column</button>
         <button class="ad-add-column rounded-pill button-creation d-flex align-items-center justify-content-evenly"><i
                 class="fa-solid fa-plus"></i>Add column</button>
 
     </header>
+    <!-- *Modal -->
 
-    <main>
-
-        <!-- *Modal -->
-        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content setting-div">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 setting-tittre" id="staticBackdropLabel">Setting Pannel</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="pickcolor d-flex align-items-center justify-content-between">
-                            <p>Change gradiant Background</p>
-                            <div class="colors">
-                                <input type="color" name="" id="adv-gradiant1">
-                                <input type="color" name="" id="adv-gradiant2">
-                            </div>
+    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content setting-div">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 setting-tittre" id="staticBackdropLabel">Setting Pannel</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="pickcolor d-flex align-items-center justify-content-between">
+                        <p>Change gradiant Background</p>
+                        <div class="colors">
+                            <input type="color" name="" id="adv-gradiant1">
+                            <input type="color" name="" id="adv-gradiant2">
                         </div>
-                        <div class="mainpage d-flex align-items-center justify-content-between mt-3">
-                            <p>Back to Menu</p>
-                            <a class="btn btn-dark text-white text-decoration-none" href="../../index.html">To Do
-                                Lists</a>
-                        </div>
-                        <div class="mainpage d-flex align-items-center justify-content-between mt-3">
-                            <p>Delete all the tasks</p>
-                            <button class="btn btn-dark text-white" id="resetTask">Reset all</button>
-                        </div>
+                    </div>
+                    <div class="mainpage d-flex align-items-center justify-content-between mt-3">
+                        <p>Back to Menu</p>
+                        <a class="btn btn-dark text-white text-decoration-none" href="../../index.html">To Do
+                            Lists</a>
+                    </div>
+                    <div class="mainpage d-flex align-items-center justify-content-between mt-3">
+                        <p>Delete all the tasks</p>
+                        <button class="btn btn-dark text-white" id="resetTask">Reset all</button>
+                    </div>
 
 
-                    </div>
-                    <div class="modal-footer d-flex align-items-center justify-content-center">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="savechange">Save
-                            chaange</button>
-                    </div>
+                </div>
+                <div class="modal-footer d-flex align-items-center justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="savechange">Save
+                        chaange</button>
                 </div>
             </div>
         </div>
+    </div>
 
-
-
-
-
-
-
+    <main>
     </main>
 
     <script src="../js/main.js"></script>

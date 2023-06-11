@@ -17,6 +17,8 @@ let containerPosition = 1;
 
 //* creatin de container
 advancedCreation.addEventListener("click", () => {
+    let allTasksContainer = main.innerHTML
+    localStorage.setItem('allTaskAdvanced', allTasksContainer)
     //* create container
     let taskContainer = document.createElement("div")
     taskContainer.classList.add("task-column")
@@ -39,17 +41,17 @@ advancedCreation.addEventListener("click", () => {
     //* edit icon
     let editTitle = document.createElement("i")
     editTitle.setAttribute("class", "fa-solid fa-pen edit-tittle")
-    editTitle.setAttribute("title","Edit the task column's name")
+    editTitle.setAttribute("title", "Edit the task column's name")
     containerHeader.appendChild(editTitle)
     //* add task
     let addTask = document.createElement("i")
     addTask.setAttribute("class", "fa-sharp fa-solid fa-plus ms-3 type-task")
-    addTask.setAttribute("title","Insert task")
+    addTask.setAttribute("title", "Insert task")
     containerHeader.appendChild(addTask)
     //* column setting
     let settingColumn = document.createElement("i")
     settingColumn.setAttribute("class", "fa-solid fa-gear setting ms-3")
-    settingColumn.setAttribute("title","Setting")
+    settingColumn.setAttribute("title", "Setting")
     containerHeader.appendChild(settingColumn)
     settingColumn.addEventListener('click', () => {
         if (settingColumn.classList.contains("setting")) {
@@ -63,11 +65,11 @@ advancedCreation.addEventListener("click", () => {
             containerHeader.style.justifyContent = "space-around"
             //* changing color of column
             let changeColor = document.createElement("i")
-            changeColor.setAttribute("title","Change  Column's Color")
+            changeColor.setAttribute("title", "Change  Column's Color")
             changeColor.setAttribute("class", "fa-solid fa-palette")
             changeColor.style.position = "relative"
             let colorPalette = document.createElement("input")
-            colorPalette.setAttribute('type',"color")
+            colorPalette.setAttribute('type', "color")
             colorPalette.style.position = "absolute"
             colorPalette.style.left = "0"
             colorPalette.style.left = "0"
@@ -79,6 +81,8 @@ advancedCreation.addEventListener("click", () => {
             colorPalette.addEventListener("input", () => {
                 taskContainer.style.backgroundColor = colorPalette.value
                 taskContainer.setAttribute("data-background", colorPalette.value)
+                localStorage.setItem('allTaskAdvanced', allTasksContainer)
+
 
             })
             //* delete column 
@@ -89,25 +93,40 @@ advancedCreation.addEventListener("click", () => {
                 let deletedTaskPosition = taskContainer.style.left
                 let allContainers = main.querySelectorAll(".task-column")
                 allContainers.forEach(element => {
-                    let currentElementposition= element.style.left
-                    currentElementposition = currentElementposition.slice(0,-2)
+                    let currentElementposition = element.style.left
+                    currentElementposition = currentElementposition.slice(0, -2)
 
-                    if (currentElementposition> deletedTaskPosition) {
-                        element.style.left = (currentElementposition -21) +"vw"
+                    if (currentElementposition > deletedTaskPosition) {
+                        element.style.left = (currentElementposition - 21) + "vw"
                         containerPosition -= 21
                     }
                 });
                 taskContainer.remove()
+                localStorage.setItem('allTaskAdvanced', allTasksContainer)
             })
-            //* clear chi7aja 
+            //* clear verified tasks 
             let clearing = document.createElement("i")
-            clearing.setAttribute("title","Clear")
-            // clearing.setAttribute("class", "fa-solid fa-palette")          
+            clearing.setAttribute("class", "fa-solid fa-list-check clear-verified")
+            clearing.setAttribute("title", "Clear verified tasks")
+            containerHeader.appendChild(clearing)
+            clearing.addEventListener("click", () => {
+                let allCompletedTasks = taskContainer.querySelectorAll(".reset-task")
+                allCompletedTasks.forEach(element => {
+                    let divDone = element.parentElement.parentElement
+                    taskContainer.removeChild(divDone)
+                    localStorage.setItem('allTaskAdvanced', allTasksContainer)
+
+                });
+
+
+            })
+
 
 
         } else {
             let changeColor = containerHeader.querySelector(".fa-palette")
             let deleteColumn = containerHeader.querySelector(".fa-trash")
+            let clearVerified = containerHeader.querySelector(".clear-verified")
 
             settingColumn.removeAttribute("class")
             settingColumn.setAttribute("class", "fa-solid fa-gear ms-3 setting")
@@ -119,12 +138,9 @@ advancedCreation.addEventListener("click", () => {
             containerHeader.style.justifyContent = ""
             containerHeader.removeChild(changeColor)
             containerHeader.removeChild(deleteColumn)
-
-
-
+            containerHeader.removeChild(clearVerified)
+            localStorage.setItem('allTaskAdvanced', allTasksContainer)
         }
-
-
     })
 
     //* modification de titre
@@ -139,6 +155,7 @@ advancedCreation.addEventListener("click", () => {
             editTitle.removeAttribute("class")
             editTitle.setAttribute("class", "fa-solid fa-pen edit-tittle")
             headerTitle.readOnly = true
+            localStorage.setItem('allTaskAdvanced', allTasksContainer)
 
 
         }
@@ -211,18 +228,15 @@ advancedCreation.addEventListener("click", () => {
                             if (taskContainer !== zone) {
 
                                 zone.appendChild(draggingTask);
-                                //         //     }else{
-                                //         //         console.log('xxx');
+                                localStorage.setItem('allTaskAdvanced', allTasksContainer)
                             }
                         }
                     });
                 });
 
-
-
-
-
                 taskContainer.appendChild(taskDiv)
+                localStorage.setItem('allTaskAdvanced', allTasksContainer)
+
                 //* creation de task area
                 let taskInput = document.createElement('input')
                 taskInput.classList.add("task-area")
@@ -248,8 +262,7 @@ advancedCreation.addEventListener("click", () => {
                         editTask.removeAttribute("class")
                         editTask.setAttribute("class", "fa-solid fa-pen edit-task")
                         taskInput.readOnly = true
-
-
+                        localStorage.setItem('allTaskAdvanced', allTasksContainer)
                     }
 
                 })
@@ -261,10 +274,11 @@ advancedCreation.addEventListener("click", () => {
 
                     if (taskDone.classList.contains("task-done")) {
                         taskDone.removeAttribute("class")
-                        taskDone.setAttribute("class", "fa-sharp fa-solid fa-rotate-left")
+                        taskDone.setAttribute("class", "fa-sharp fa-solid fa-rotate-left reset-task")
                         taskDiv.style.backgroundColor = "green"
                         taskInput.style.textDecoration = "line-through"
                         taskInput.style.color = "white"
+                        localStorage.setItem('allTaskAdvanced', allTasksContainer)
 
                     } else {
                         taskDone.removeAttribute("class")
@@ -272,8 +286,7 @@ advancedCreation.addEventListener("click", () => {
                         taskDiv.style.backgroundColor = ""
                         taskInput.style.textDecoration = ""
                         taskInput.style.color = ""
-
-
+                        localStorage.setItem('allTaskAdvanced', allTasksContainer)
                     }
                 })
                 //* delete task
@@ -282,12 +295,12 @@ advancedCreation.addEventListener("click", () => {
                 toolsDiv.appendChild(deleteTask)
                 deleteTask.addEventListener("click", () => {
                     let parent = taskDiv.parentElement
-
                     parent.removeChild(taskDiv)
+                    localStorage.setItem('allTaskAdvanced', allTasksContainer)
                 })
 
-
                 containerHeader.removeChild(insertTask)
+
 
                 //*if the input is empty
             } else {
@@ -301,6 +314,8 @@ advancedCreation.addEventListener("click", () => {
             }
         }
     })
+    
+    localStorage.setItem('allTaskAdvanced', allTasksContainer)
 })
 
 
@@ -311,3 +326,5 @@ savechange.addEventListener("click", () => {
     localStorage.setItem("advancedbodygradiant", advancedbodygradiant)
 
 })
+
+
