@@ -10,6 +10,8 @@ let gradiant2 = document.querySelector("#adv-gradiant2")
 let resetTask = document.querySelector("#resetTask")
 let advancedbodygradiant = localStorage.getItem("advancedbodygradiant")
 bodyAdvanced.style.backgroundImage = advancedbodygradiant
+let logout = document.querySelector(".button-logout")
+
 
 // let restoredData = localStorage.getItem('allTaskAdvanced')
 // main.innerHTML = restoredData
@@ -146,39 +148,38 @@ advancedCreation.addEventListener("click", () => {
     })
 
     //* modification de titre
-function edititle() {
-    if (editTitle.classList.contains("edit-tittle")) {
-        editTitle.removeAttribute("class")
-        editTitle.setAttribute("class", "fa-solid fa-check")
-        headerTitle.readOnly = false
-        headerTitle.value = ""
-        headerTitle.focus()
+    function edititle() {
+        if (editTitle.classList.contains("edit-tittle")) {
+            editTitle.removeAttribute("class")
+            editTitle.setAttribute("class", "fa-solid fa-check")
+            headerTitle.readOnly = false
+            headerTitle.value = ""
+            headerTitle.focus()
 
-    } else {
-        editTitle.removeAttribute("class")
-        editTitle.setAttribute("class", "fa-solid fa-pen edit-tittle")
-        headerTitle.readOnly = true
-        if (headerTitle.value == "") {
-            headerTitle.value = "Task Title"
+        } else {
+            editTitle.removeAttribute("class")
+            editTitle.setAttribute("class", "fa-solid fa-pen edit-tittle")
+            headerTitle.readOnly = true
+            if (headerTitle.value == "") {
+                headerTitle.value = "Task Title"
+            }
+
+
+            let allContentWDone = main.innerHTML
+            localStorage.setItem('allTaskAdvanced', allContentWDone)
+
+
         }
-
-
-        let allContentWDone = main.innerHTML
-        localStorage.setItem('allTaskAdvanced', allContentWDone)
-
-
-    }   
-}
+    }
     editTitle.addEventListener("click", () => {
         edititle()
 
     })
-    headerTitle.addEventListener("keyup",(e)=>{
+    headerTitle.addEventListener("keyup", (e) => {
         if (e.key == "Enter") {
             edititle()
         }
     })
-
     //* creation de taches
 
     addTask.addEventListener('click', () => {
@@ -340,11 +341,11 @@ function edititle() {
                         insertTask.style.color = ""
                     }, 1500);
                 }
-                
+
             }
         }
     })
-    
+
     let allTasksContainer = main.innerHTML
     localStorage.setItem('allTaskAdvanced', allTasksContainer)
 
@@ -369,3 +370,9 @@ resetTask.addEventListener("click", () => {
         localStorage.removeItem('allTaskAdvanced')
     });
 })
+
+//* Log out 
+
+logout.addEventListener("click", () => {
+    localStorage.removeItem("isConnected")
+});
