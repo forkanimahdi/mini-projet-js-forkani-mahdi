@@ -11,14 +11,15 @@ let resetTask = document.querySelector("#resetTask")
 let advancedbodygradiant = localStorage.getItem("advancedbodygradiant")
 bodyAdvanced.style.backgroundImage = advancedbodygradiant
 
+// let restoredData = localStorage.getItem('allTaskAdvanced')
+// main.innerHTML = restoredData
 
 let containerPosition = 1;
 
 
 //* creatin de container
 advancedCreation.addEventListener("click", () => {
-    let allTasksContainer = main.innerHTML
-    localStorage.setItem('allTaskAdvanced', allTasksContainer)
+
     //* create container
     let taskContainer = document.createElement("div")
     taskContainer.classList.add("task-column")
@@ -81,7 +82,8 @@ advancedCreation.addEventListener("click", () => {
             colorPalette.addEventListener("input", () => {
                 taskContainer.style.backgroundColor = colorPalette.value
                 taskContainer.setAttribute("data-background", colorPalette.value)
-                localStorage.setItem('allTaskAdvanced', allTasksContainer)
+                let allContentWDataBg = main.innerHTML
+                localStorage.setItem('allTaskAdvanced', allContentWDataBg)
 
 
             })
@@ -102,7 +104,8 @@ advancedCreation.addEventListener("click", () => {
                     }
                 });
                 taskContainer.remove()
-                localStorage.setItem('allTaskAdvanced', allTasksContainer)
+                let allContentWoColumn = main.innerHTML
+                localStorage.setItem('allTaskAdvanced', allContentWoColumn)
             })
             //* clear verified tasks 
             let clearing = document.createElement("i")
@@ -114,8 +117,8 @@ advancedCreation.addEventListener("click", () => {
                 allCompletedTasks.forEach(element => {
                     let divDone = element.parentElement.parentElement
                     taskContainer.removeChild(divDone)
-                    localStorage.setItem('allTaskAdvanced', allTasksContainer)
-
+                    let allContentWcleared = main.innerHTML
+                    localStorage.setItem('allTaskAdvanced', allContentWcleared)
                 });
 
 
@@ -139,27 +142,41 @@ advancedCreation.addEventListener("click", () => {
             containerHeader.removeChild(changeColor)
             containerHeader.removeChild(deleteColumn)
             containerHeader.removeChild(clearVerified)
-            localStorage.setItem('allTaskAdvanced', allTasksContainer)
         }
     })
 
     //* modification de titre
+function edititle() {
+    if (editTitle.classList.contains("edit-tittle")) {
+        editTitle.removeAttribute("class")
+        editTitle.setAttribute("class", "fa-solid fa-check")
+        headerTitle.readOnly = false
+        headerTitle.value = ""
+        headerTitle.focus()
 
-    editTitle.addEventListener("click", () => {
-        if (editTitle.classList.contains("edit-tittle")) {
-            editTitle.removeAttribute("class")
-            editTitle.setAttribute("class", "fa-solid fa-check")
-            headerTitle.readOnly = false
-            headerTitle.focus()
-        } else {
-            editTitle.removeAttribute("class")
-            editTitle.setAttribute("class", "fa-solid fa-pen edit-tittle")
-            headerTitle.readOnly = true
-            localStorage.setItem('allTaskAdvanced', allTasksContainer)
-
-
+    } else {
+        editTitle.removeAttribute("class")
+        editTitle.setAttribute("class", "fa-solid fa-pen edit-tittle")
+        headerTitle.readOnly = true
+        if (headerTitle.value == "") {
+            headerTitle.value = "Task Title"
         }
 
+
+        let allContentWDone = main.innerHTML
+        localStorage.setItem('allTaskAdvanced', allContentWDone)
+
+
+    }   
+}
+    editTitle.addEventListener("click", () => {
+        edititle()
+
+    })
+    headerTitle.addEventListener("keyup",(e)=>{
+        if (e.key == "Enter") {
+            edititle()
+        }
     })
 
     //* creation de taches
@@ -192,130 +209,145 @@ advancedCreation.addEventListener("click", () => {
                     headerTitle.style.display = 'initial'
                 }
             })
+            insertTask.addEventListener('keyup', (event) => {
+                if (event.key === "Enter") {
+
+                }
+            })
 
             //* creation de task
         } else {
             let insertTask = containerHeader.querySelector(".header-task-area")
+
             //* if the input is filed
-            if (insertTask.value != 0) {
-                addTask.removeAttribute("class")
-                addTask.setAttribute("class", "fa-sharp fa-solid fa-plus ms-3 type-task")
-                // insertTask.style.display = 'none'
-                addTask.style.transition = "0s ease"
-                editTitle.style.display = 'initial'
-                settingColumn.style.display = 'initial'
-                headerTitle.style.display = 'initial'
-                //*creation de task div
-                let taskDiv = document.createElement("div")
-                taskDiv.classList.add("task-div")
-                taskDiv.setAttribute("draggable", "true")
-                // ! Draaaaaaaaaaaaaaaaaaaaag aaaaaaaaaaaaaaaaaaaand DDDDDDDDDDDroooooooooooooopp
-                taskDiv.addEventListener("dragstart", (e) => {
-                    e.target.classList.add("is-dragging")
-                })
-                taskDiv.addEventListener("dragend", (e) => {
-                    e.target.classList.remove("is-dragging");
-                });
-                let droppables = bodyAdvanced.querySelectorAll(".task-column")
-                droppables.forEach((zone) => {
-                    zone.addEventListener("dragover", (e) => {
-                        e.preventDefault();
-
-                        let draggingTask = document.querySelector(".is-dragging");
-
-                        if (draggingTask) {
-                            let taskContainer = draggingTask.parentElement;
-                            if (taskContainer !== zone) {
-
-                                zone.appendChild(draggingTask);
-                                localStorage.setItem('allTaskAdvanced', allTasksContainer)
-                            }
-                        }
+            creation()
+            function creation() {
+                if (insertTask.value != 0) {
+                    addTask.removeAttribute("class")
+                    addTask.setAttribute("class", "fa-sharp fa-solid fa-plus ms-3 type-task")
+                    // insertTask.style.display = 'none'
+                    addTask.style.transition = "0s ease"
+                    editTitle.style.display = 'initial'
+                    settingColumn.style.display = 'initial'
+                    headerTitle.style.display = 'initial'
+                    //*creation de task div
+                    let taskDiv = document.createElement("div")
+                    taskDiv.classList.add("task-div")
+                    taskDiv.setAttribute("draggable", "true")
+                    // ! Draaaaaaaaaaaaaaaaaaaaag aaaaaaaaaaaaaaaaaaaand DDDDDDDDDDDroooooooooooooopp
+                    taskDiv.addEventListener("dragstart", (e) => {
+                        e.target.classList.add("is-dragging")
+                    })
+                    taskDiv.addEventListener("dragend", (e) => {
+                        e.target.classList.remove("is-dragging");
                     });
-                });
+                    let droppables = bodyAdvanced.querySelectorAll(".task-column")
+                    droppables.forEach((zone) => {
+                        zone.addEventListener("dragover", (e) => {
+                            e.preventDefault();
+                            let draggingTask = document.querySelector(".is-dragging");
+                            if (draggingTask) {
+                                let taskContainer = draggingTask.parentElement;
+                                if (taskContainer !== zone) {
 
-                taskContainer.appendChild(taskDiv)
-                localStorage.setItem('allTaskAdvanced', allTasksContainer)
+                                    zone.appendChild(draggingTask);
+                                    let allContentWDrag = main.innerHTML
+                                    localStorage.setItem('allTaskAdvanced', allContentWDrag)
+                                }
+                            }
+                        });
+                    });
+                    taskContainer.appendChild(taskDiv)
 
-                //* creation de task area
-                let taskInput = document.createElement('input')
-                taskInput.classList.add("task-area")
-                taskInput.setAttribute('maxlength', "15")
-                taskInput.readOnly = true
-                taskInput.value = insertTask.value
-                taskDiv.appendChild(taskInput)
-                //* icon div de task
-                let toolsDiv = document.createElement("div")
-                toolsDiv.classList.add("tools-div")
-                taskDiv.appendChild(toolsDiv)
-                //* edit the task
-                let editTask = document.createElement("i")
-                editTask.setAttribute("class", "fa-solid fa-pen edit-task")
-                toolsDiv.appendChild(editTask)
-                editTask.addEventListener("click", () => {
-                    if (editTask.classList.contains("edit-task")) {
-                        editTask.removeAttribute("class")
-                        editTask.setAttribute("class", "fa-solid fa-check")
-                        taskInput.readOnly = false
-                        taskInput.focus()
-                    } else {
-                        editTask.removeAttribute("class")
-                        editTask.setAttribute("class", "fa-solid fa-pen edit-task")
-                        taskInput.readOnly = true
-                        localStorage.setItem('allTaskAdvanced', allTasksContainer)
-                    }
+                    //* creation de task area
+                    let taskInput = document.createElement('input')
+                    taskInput.classList.add("task-area")
+                    taskInput.setAttribute('maxlength', "15")
+                    taskInput.setAttribute('value', insertTask.value)
+                    taskInput.readOnly = true
+                    taskDiv.appendChild(taskInput)
+                    //* icon div de task
+                    let toolsDiv = document.createElement("div")
+                    toolsDiv.classList.add("tools-div")
+                    taskDiv.appendChild(toolsDiv)
+                    //* edit the task
+                    let editTask = document.createElement("i")
+                    editTask.setAttribute("class", "fa-solid fa-pen edit-task")
+                    toolsDiv.appendChild(editTask)
+                    editTask.addEventListener("click", () => {
+                        if (editTask.classList.contains("edit-task")) {
+                            editTask.removeAttribute("class")
+                            editTask.setAttribute("class", "fa-solid fa-check")
+                            taskInput.readOnly = false
+                            taskInput.focus()
+                        } else {
+                            editTask.removeAttribute("class")
+                            editTask.setAttribute("class", "fa-solid fa-pen edit-task")
+                            taskInput.readOnly = true
+                            let allContentWEdit = main.innerHTML
+                            localStorage.setItem('allTaskAdvanced', allContentWEdit)
+                        }
 
-                })
-                //* task is completed
-                let taskDone = document.createElement("i")
-                taskDone.setAttribute("class", "fa-solid fa-circle-check task-done")
-                toolsDiv.appendChild(taskDone)
-                taskDone.addEventListener('click', () => {
+                    })
+                    //* task is completed
+                    let taskDone = document.createElement("i")
+                    taskDone.setAttribute("class", "fa-solid fa-circle-check task-done")
+                    toolsDiv.appendChild(taskDone)
+                    taskDone.addEventListener('click', () => {
 
-                    if (taskDone.classList.contains("task-done")) {
-                        taskDone.removeAttribute("class")
-                        taskDone.setAttribute("class", "fa-sharp fa-solid fa-rotate-left reset-task")
-                        taskDiv.style.backgroundColor = "green"
-                        taskInput.style.textDecoration = "line-through"
-                        taskInput.style.color = "white"
-                        localStorage.setItem('allTaskAdvanced', allTasksContainer)
+                        if (taskDone.classList.contains("task-done")) {
+                            taskDone.removeAttribute("class")
+                            taskDone.setAttribute("class", "fa-sharp fa-solid fa-rotate-left reset-task")
+                            taskDiv.style.backgroundColor = "green"
+                            taskInput.style.textDecoration = "line-through"
+                            taskInput.style.color = "white"
+                            let allContentWDone = main.innerHTML
+                            localStorage.setItem('allTaskAdvanced', allContentWDone)
 
-                    } else {
-                        taskDone.removeAttribute("class")
-                        taskDone.setAttribute("class", "fa-solid fa-circle-check task-done")
-                        taskDiv.style.backgroundColor = ""
-                        taskInput.style.textDecoration = ""
-                        taskInput.style.color = ""
-                        localStorage.setItem('allTaskAdvanced', allTasksContainer)
-                    }
-                })
-                //* delete task
-                let deleteTask = document.createElement("i")
-                deleteTask.setAttribute("class", "fa-solid fa-trash")
-                toolsDiv.appendChild(deleteTask)
-                deleteTask.addEventListener("click", () => {
-                    let parent = taskDiv.parentElement
-                    parent.removeChild(taskDiv)
-                    localStorage.setItem('allTaskAdvanced', allTasksContainer)
-                })
+                        } else {
+                            taskDone.removeAttribute("class")
+                            taskDone.setAttribute("class", "fa-solid fa-circle-check task-done")
+                            taskDiv.style.backgroundColor = ""
+                            taskInput.style.textDecoration = ""
+                            taskInput.style.color = ""
+                            let allContentWoDone = main.innerHTML
+                            localStorage.setItem('allTaskAdvanced', allContentWoDone)
+                        }
+                    })
+                    //* delete task
+                    let deleteTask = document.createElement("i")
+                    deleteTask.setAttribute("class", "fa-solid fa-trash")
+                    toolsDiv.appendChild(deleteTask)
+                    deleteTask.addEventListener("click", () => {
+                        let parent = taskDiv.parentElement
+                        parent.removeChild(taskDiv)
+                        let allContainersWithoutDeleted = main.innerHTML
+                        localStorage.setItem('allTaskAdvanced', allContainersWithoutDeleted)
+                    })
 
-                containerHeader.removeChild(insertTask)
+                    containerHeader.removeChild(insertTask)
+                    let allContainersWithTask = main.innerHTML
+                    localStorage.setItem('allTaskAdvanced', allContainersWithTask)
 
 
-                //*if the input is empty
-            } else {
-                insertTask.value = 'This area cant be empty'
-                insertTask.style.color = "orangered"
-                insertTask.style.fontSize = '1.1vw'
-                setTimeout(() => {
-                    insertTask.value = ''
-                    insertTask.style.color = ""
-                }, 1500);
+                    //*if the input is empty
+                } else {
+                    insertTask.value = 'This area cant be empty'
+                    insertTask.style.color = "orangered"
+                    insertTask.style.fontSize = '1.1vw'
+                    setTimeout(() => {
+                        insertTask.value = ''
+                        insertTask.style.color = ""
+                    }, 1500);
+                }
+                
             }
         }
     })
     
+    let allTasksContainer = main.innerHTML
     localStorage.setItem('allTaskAdvanced', allTasksContainer)
+
 })
 
 
@@ -328,3 +360,12 @@ savechange.addEventListener("click", () => {
 })
 
 
+//* reset All 
+resetTask.addEventListener("click", () => {
+    let allContainersExisted = document.querySelectorAll(".task-column")
+    allContainersExisted.forEach(element => {
+        element.remove()
+        containerPosition = 1;
+        localStorage.removeItem('allTaskAdvanced')
+    });
+})
