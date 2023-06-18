@@ -152,7 +152,6 @@ function createTask() {
     } else {
         inputTask.setAttribute('placeholder', 'This area cant be empty')
         inputTask.style.color = "orangered"
-        inputTask.style.fontSize = '1.1vw'
         setTimeout(() => {
             inputTask.removeAttribute('placeholder', 'This area cant be empty')
             inputTask.setAttribute('placeholder', 'Insert Task Here')

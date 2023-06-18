@@ -357,10 +357,11 @@ advancedCreation.addEventListener("click", () => {
 
                     //*if the input is empty
                 } else {
-                    insertTask.value = 'This area cant be empty'
+                    inputTask.setAttribute('placeholder', 'This area cant be empty')
                     insertTask.style.color = "orangered"
-                    insertTask.style.fontSize = '1.1vw'
                     setTimeout(() => {
+                        inputTask.removeAttribute('placeholder', 'This area cant be empty')
+                        inputTask.setAttribute('placeholder', 'Insert Task Here')
                         insertTask.value = ''
                         insertTask.style.color = ""
                     }, 1500);
