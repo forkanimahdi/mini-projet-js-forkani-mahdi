@@ -11056,6 +11056,83 @@ h2, .h2 {
   background-color: #643bb1 !important;
 }
 
+@media screen and (max-width: 425px) {
+  .modal1,
+  .modal2,
+  .logoutbtn {
+    width: 30vw;
+    height: 6vh;
+    font-size: 4vw;
+  }
+  .modal1 {
+    top: 3vh;
+    right: 3vw;
+  }
+  .modal2 {
+    top: 3vh;
+    right: 35vw;
+  }
+  .contenu {
+    width: 90vw;
+    height: 30rem;
+  }
+  .close-button,
+  .login-button,
+  .singup-button {
+    font-size: 3.6vw;
+    width: 35%;
+    height: 6vh;
+  }
+  .x-button {
+    top: 5%;
+    right: 5%;
+    width: 8vw;
+    height: 4vh;
+  }
+  .login-mail,
+  .login-password,
+  .singup-input {
+    width: 90%;
+    height: 3rem !important;
+    left: 5%;
+    font-size: 4vw;
+    color: white;
+  }
+  .mail-label,
+  .password-label,
+  .singup-label {
+    left: 5%;
+  }
+  h2, .h2 {
+    margin-top: 2vh;
+  }
+  .carta {
+    position: fixed;
+    left: 0%;
+    color: black;
+  }
+  .welcoming {
+    top: 20% !important;
+    display: none;
+  }
+  .welcoming-text {
+    font-size: 3vw;
+    top: 15%;
+    text-align: center;
+  }
+  .card {
+    background-color: rgba(255, 255, 255, 0.7803921569);
+    left: 50% !important;
+    transform: translate(-50%);
+  }
+  .card .card-title {
+    color: #4e2f89 !important;
+    text-decoration: underline;
+  }
+  .card .btn {
+    background-color: #643bb1 !important;
+  }
+}
 .simpleBody {
   width: 100vw;
   height: 100vh;
@@ -11070,7 +11147,6 @@ h2, .h2 {
   width: 30vw;
   height: 8vh;
   background-color: rgba(0, 0, 0, 0.3019607843);
-  outline: 2px solid white;
   color: white;
   font-size: 1.2vw;
 }
@@ -11172,6 +11248,73 @@ i:hover {
   text-align: center;
 }
 
+@media screen and (max-width: 425px) {
+  .welcoming-simple {
+    font-size: 3.5vw;
+    width: 100%;
+    left: 0;
+    transform: translate(0);
+    text-align: center;
+  }
+  .insert-input-simple {
+    position: fixed;
+    top: 10vh;
+    left: 5vw;
+    width: 90vw;
+    height: 4rem;
+    background-color: rgba(0, 0, 0, 0.3019607843);
+    outline: none;
+    color: white;
+    font-size: 3.5vw;
+  }
+  .insert-input-simple:focus {
+    outline: none;
+  }
+  .insert-input-simple::placeholder {
+    color: white;
+  }
+  .insert-button-simple {
+    position: fixed;
+    top: 19vh;
+    left: 55vw;
+    width: 30vw;
+    height: 4rem;
+    font-size: 3vw;
+  }
+  .setting-button {
+    position: fixed;
+    top: 19vh;
+    left: 20vw;
+    width: 30vw;
+    height: 4rem;
+    font-size: 3vw;
+  }
+  .tasks-container {
+    width: 96vw;
+    height: 30rem;
+    overflow-y: auto;
+    border: 0.5vw solid #ce5a16;
+    position: fixed;
+    top: 30vh;
+    left: 2vw;
+  }
+  .tach {
+    width: 100%;
+    height: 15%;
+    border-bottom: 2px solid white;
+    font-size: 4vw;
+  }
+  .tools {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .setting-div p {
+    font-size: 3.5vw;
+  }
+}
 .body-medium {
   height: 100vh;
 }
@@ -11180,7 +11323,6 @@ i:hover {
   width: 100%;
   height: 100vh;
   background: linear-gradient(360deg, #022d14, #7c2f19);
-  background-size: cover;
   position: relative;
   height: 100vh;
   overflow-y: hidden;
@@ -11227,6 +11369,33 @@ h1, .h1 {
   font-size: 2vw;
 }
 
+@media screen and (max-width: 425px) {
+  .advanced-body {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(90deg, #022d14, #7c2f19);
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  header {
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(90deg, #022d14, #7c2f19);
+    z-index: 9;
+  }
+  .ad-add-column, .advanced-setting-button, .button-logout {
+    width: 30vw;
+    height: 6vh;
+    border: 2px solid white;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.3098039216);
+    color: #d1a7ff;
+    font-size: 3.5vw;
+  }
+}
 main {
   height: 80vh;
   position: relative;
@@ -11343,6 +11512,57 @@ main {
   background: transparent;
   color: white;
   cursor: move;
+}
+
+@media screen and (max-width: 425px) {
+  main {
+    height: 80vh;
+    position: relative;
+    top: 11vh;
+  }
+  .task-column {
+    width: 98vw;
+    height: 100%;
+    overflow-y: auto;
+    font-size: 3vw;
+  }
+  .div-add-tasks {
+    width: 100%;
+    height: 6vh;
+    border-bottom: 1px solid white;
+    position: relative;
+  }
+  .div-add-tasks i {
+    cursor: pointer;
+    color: #d1a7ff;
+    font-size: 3.5vw;
+  }
+  .header-input {
+    width: 70%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 3.5vw;
+  }
+  .header-task-area {
+    width: 80%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 3.5vw;
+  }
+  .header-task-area::placeholder {
+    color: rgba(255, 255, 255, 0.7137254902);
+    font-size: 3vw;
+  }
+  .task-div {
+    width: 100%;
+    height: 8rem;
+  }
+  .task-area {
+    position: relative;
+    width: 85%;
+    height: 5rem;
+    font-size: 3vw;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
