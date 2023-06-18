@@ -285,13 +285,26 @@ h2
     .password-label,
     .singup-label
         left: 5%
+    .singup-input
+        height: 5vh
+        &:focus
+            & + .singup-label
+                margin-top: -9%
+    .login-mail
+        &:focus
+            & + .mail-label
+                margin-top: -9%
+    .login-password
+        &:focus
+            & + .password-label
+                margin-top: -9%
     h2
         margin-top: 2vh
     .carta
         position: fixed
         left: 0%
         color: black
-        
+
     .welcoming
         top: 20% !important
         display: none
@@ -302,7 +315,7 @@ h2
     .card
         background-color: #ffffffc7
         left: 50% !important
-        transform: translate(-50%)  
+        transform: translate(-50%)
         .card-title
             color: #4e2f89 !important
             text-decoration: underline

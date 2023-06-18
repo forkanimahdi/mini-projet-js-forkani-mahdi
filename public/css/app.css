@@ -11103,6 +11103,18 @@ h2, .h2 {
   .singup-label {
     left: 5%;
   }
+  .singup-input {
+    height: 5vh;
+  }
+  .singup-input:focus + .singup-label {
+    margin-top: -9%;
+  }
+  .login-mail:focus + .mail-label {
+    margin-top: -9%;
+  }
+  .login-password:focus + .password-label {
+    margin-top: -9%;
+  }
   h2, .h2 {
     margin-top: 2vh;
   }

@@ -81,11 +81,19 @@ let logoutbtn = document.querySelector(".logoutbtn")
 //? for styling  applying functiom with parametre
 
 const movingLabel = (theInput, theLabel) => {
-    if (theInput.value != 0) {
-        theLabel.style.marginTop = `-6%`
+    if (window.innerWidth <= 425) {
+        if (theInput.value != 0) {
+            theLabel.style.marginTop = `-9%`
+        } else {
+            theLabel.style.marginTop = `0%`;
+        }
     } else {
-        theLabel.style.marginTop = `0%`
-
+        if (theInput.value != 0) {
+            theLabel.style.marginTop = `-6%`
+        } else {
+            theLabel.style.marginTop = `0%`;
+    
+        }
     }
 }
 
