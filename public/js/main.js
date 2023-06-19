@@ -28,9 +28,9 @@ advancedCreation.addEventListener("click", () => {
 
     if (window.innerWidth <= 425) {
         taskContainer.setAttribute("ondragover", "event.preventDefault()")
-        taskContainer.style.top = containerPosition + "vh"
+        taskContainer.style.top = containerPosition + "rem"
         main.appendChild(taskContainer)
-        containerPosition += 81
+        containerPosition += 41
     } else {
         taskContainer.setAttribute("ondragover", "event.preventDefault()")
         taskContainer.style.left = containerPosition + "vw"
@@ -108,12 +108,12 @@ advancedCreation.addEventListener("click", () => {
                     if (window.innerWidth <= 425) {
                         let deletedTaskPosition = parseInt(taskContainer.style.top)
                         let currentElementposition = element.style.top
-                        currentElementposition = currentElementposition.slice(0, -2)
+                        currentElementposition = currentElementposition.slice(0, -3)
                         console.log(currentElementposition);
 
                         if (currentElementposition > deletedTaskPosition) {
-                            element.style.top = (currentElementposition - 81) + "vh"
-                            containerPosition -= 81
+                            element.style.top = (currentElementposition - 41) + "rem"
+                            containerPosition -= 41
                         }
                     } else {
                         let deletedTaskPosition = taskContainer.style.left
@@ -125,11 +125,11 @@ advancedCreation.addEventListener("click", () => {
                             containerPosition -= 21
                         }
                     }
-                    
+
                 }
                 taskContainer.remove()
 
-                
+
                 let allContentWoColumn = main.innerHTML
                 localStorage.setItem('allTaskAdvanced', allContentWoColumn)
             })
@@ -379,21 +379,33 @@ advancedCreation.addEventListener("click", () => {
 
 //* changing color
 savechange.addEventListener("click", () => {
-    let advancedbodygradiant = `linear-gradient(180deg, ${gradiant1.value}, ${gradiant2.value})`
-    bodyAdvanced.style.backgroundImage = advancedbodygradiant
-    localStorage.setItem("advancedbodygradiant", advancedbodygradiant)
+    if (window.innerWidth <= 425) {
+        let advancedbodygradiant = `linear-gradient(90deg, ${gradiant1.value}, ${gradiant2.value})`
+        bodyAdvanced.style.backgroundImage = advancedbodygradiant
+        localStorage.setItem("advancedbodygradiant", advancedbodygradiant)
+    } else {
+        let advancedbodygradiant = `linear-gradient(180deg, ${gradiant1.value}, ${gradiant2.value})`
+        bodyAdvanced.style.backgroundImage = advancedbodygradiant
+        localStorage.setItem("advancedbodygradiant", advancedbodygradiant)
+    }
+
 
 })
 
 
 //* reset All 
 resetTask.addEventListener("click", () => {
-    let allContainersExisted = document.querySelectorAll(".task-column")
-    allContainersExisted.forEach(element => {
-        element.remove()
-        containerPosition = 1;
-        localStorage.removeItem('allTaskAdvanced')
-    });
+    let confirming = confirm("Are you sure ? you will lose all Data !")
+    if (confirming) {
+        let allContainersExisted = document.querySelectorAll(".task-column")
+        allContainersExisted.forEach(element => {
+            element.remove()
+            containerPosition = 1;
+            localStorage.removeItem('allTaskAdvanced')
+        });  
+        localStorage.removeItem("advancedbodygradiant")
+        bodyAdvanced.style.backgroundColor = ""
+    }
 })
 
 //* Log out 

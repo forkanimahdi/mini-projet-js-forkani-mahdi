@@ -11057,37 +11057,44 @@ h2, .h2 {
 }
 
 @media screen and (max-width: 425px) {
+  body {
+    overflow-y: hidden;
+  }
+  .hero {
+    height: 50rem;
+  }
   .modal1,
   .modal2,
   .logoutbtn {
     width: 30vw;
-    height: 6vh;
+    height: 3rem;
     font-size: 4vw;
   }
   .modal1 {
-    top: 3vh;
+    top: 1.5rem;
     right: 3vw;
   }
   .modal2 {
-    top: 3vh;
+    top: 1.5rem;
     right: 35vw;
   }
   .contenu {
     width: 90vw;
     height: 30rem;
+    top: 25rem;
   }
   .close-button,
   .login-button,
   .singup-button {
     font-size: 3.6vw;
     width: 35%;
-    height: 6vh;
+    height: 3rem;
   }
   .x-button {
-    top: 5%;
+    top: 1rem;
     right: 5%;
     width: 8vw;
-    height: 4vh;
+    height: 2rem;
   }
   .login-mail,
   .login-password,
@@ -11116,7 +11123,7 @@ h2, .h2 {
     margin-top: -9%;
   }
   h2, .h2 {
-    margin-top: 2vh;
+    margin-top: 1rem;
   }
   .carta {
     position: fixed;
@@ -11160,6 +11167,7 @@ h2, .h2 {
   height: 8vh;
   background-color: rgba(0, 0, 0, 0.3019607843);
   color: white;
+  text-align: center;
   font-size: 1.2vw;
 }
 
@@ -11261,16 +11269,20 @@ i:hover {
 }
 
 @media screen and (max-width: 425px) {
+  body {
+    height: 50rem;
+  }
   .welcoming-simple {
     font-size: 3.5vw;
     width: 100%;
+    top: 1rem;
     left: 0;
     transform: translate(0);
     text-align: center;
   }
   .insert-input-simple {
     position: fixed;
-    top: 10vh;
+    top: 4rem;
     left: 5vw;
     width: 90vw;
     height: 4rem;
@@ -11287,18 +11299,18 @@ i:hover {
   }
   .insert-button-simple {
     position: fixed;
-    top: 19vh;
+    top: 10rem;
     left: 55vw;
     width: 30vw;
-    height: 4rem;
+    height: 3rem;
     font-size: 3vw;
   }
   .setting-button {
     position: fixed;
-    top: 19vh;
+    top: 10rem;
     left: 20vw;
     width: 30vw;
-    height: 4rem;
+    height: 3rem;
     font-size: 3vw;
   }
   .tasks-container {
@@ -11307,7 +11319,7 @@ i:hover {
     overflow-y: auto;
     border: 0.5vw solid #ce5a16;
     position: fixed;
-    top: 30vh;
+    top: 15rem;
     left: 2vw;
   }
   .tach {
@@ -11394,13 +11406,13 @@ h1, .h1 {
   }
   header {
     width: 100%;
-    height: 10vh;
+    height: 5rem;
     background: linear-gradient(90deg, #022d14, #7c2f19);
     z-index: 9;
   }
   .ad-add-column, .advanced-setting-button, .button-logout {
     width: 30vw;
-    height: 6vh;
+    height: 3rem;
     border: 2px solid white;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.3098039216);
@@ -11528,9 +11540,9 @@ main {
 
 @media screen and (max-width: 425px) {
   main {
-    height: 80vh;
+    height: 40rem;
     position: relative;
-    top: 11vh;
+    top: 5rem;
   }
   .task-column {
     width: 98vw;
@@ -11540,7 +11552,7 @@ main {
   }
   .div-add-tasks {
     width: 100%;
-    height: 6vh;
+    height: 3rem;
     border-bottom: 1px solid white;
     position: relative;
   }
