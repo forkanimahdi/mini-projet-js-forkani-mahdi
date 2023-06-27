@@ -11030,7 +11030,8 @@ h2, .h2 {
 
 .carta {
   position: fixed;
-  left: 20%;
+  left: 50%;
+  transform: translate(-50%);
   color: black;
 }
 
