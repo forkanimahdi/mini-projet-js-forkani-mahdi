@@ -11129,14 +11129,15 @@ h2, .h2 {
   .carta {
     position: fixed;
     left: 0%;
+    transform: translate(0%);
     color: black;
   }
   .welcoming {
-    top: 20% !important;
+    top: 30% !important;
     display: none;
   }
   .welcoming-text {
-    font-size: 3vw;
+    font-size: 5vw;
     top: 15%;
     text-align: center;
   }
